@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diecast Inventory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Diecast Inventory</h1>
+
+  <div class="form-container">
+    <input type="text" id="brand" placeholder="Brand">
+    <input type="text" id="model" placeholder="Model">
+    <input type="number" id="price" placeholder="Price">
+
+    <select id="status">
+      <option value="">Select Status</option>
+      <option value="Available">Available</option>
+      <option value="Sold">Sold</option>
+      <option value="Reserved">Reserved</option>
+    </select>
+
+    <button onclick="addProduct()">Add Product</button>
+
+    <input type="text" id="searchModel" placeholder="Search by Model">
+    <button onclick="searchProduct()">Search</button>
+
+    <!-- sort choices -->
+    <select id="sortStatus" onchange="sortByStatus()">
+      <option value="">Sort by Status</option>
+      <option value="Available">Available</option>
+      <option value="Sold">Sold</option>
+      <option value="Reserved">Reserved</option>
+    </select>
+  </div>
+
+  <table id="productTable">
+    <thead>
+      <tr>
+        <th style="width: 5%;">ID</th>
+        <th style="width: 20%;">Brand</th>
+        <th style="width: 25%;">Model</th>
+        <th style="width: 15%;">Price</th>
+        <th style="width: 15%;">Status</th>
+        <th style="width: 20%;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- table -->
+    </tbody>
+  </table>
+
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <h2>Edit Product</h2>
+      <input type="hidden" id="editId">
+      <input type="text" id="editBrand" placeholder="Brand">
+      <input type="text" id="editModel" placeholder="Model">
+      <input type="number" id="editPrice" placeholder="Price">
+
+      <select id="editStatus">
+        <option value="">Select Status</option>
+        <option value="Available">Available</option>
+        <option value="Sold">Sold</option>
+        <option value="Reserved">Reserved</option>
+      </select>
+
+      <button onclick="saveEdit()">Save</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
