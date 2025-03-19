@@ -35,9 +35,8 @@ function addProduct() {
   const brand = document.getElementById('brand').value;
   const model = document.getElementById('model').value;
   const price = document.getElementById('price').value;
-  const status = document.getElementById('status').value;
 
-  if (!brand || !model || !price || !status) {
+  if (!brand || !model || !price) {
     alert('All fields are required!');
     return;
   }
@@ -46,16 +45,26 @@ function addProduct() {
   formData.append('brand', brand);
   formData.append('model', model);
   formData.append('price', price);
-  formData.append('status', status);
   formData.append('action', 'add');
 
   fetch(apiUrl, { method: 'POST', body: formData })
-    .then(() => {
-      fetchProducts();
-      document.getElementById('brand').value = '';
-      document.getElementById('model').value = '';
-      document.getElementById('price').value = '';
-      document.getElementById('status').value = '';
+    .then(response => response.json())
+    .then(result => {
+      if (result.success) {
+        alert(result.message);
+        fetchProducts();
+
+        // Clear fields
+        document.getElementById('brand').value = '';
+        document.getElementById('model').value = '';
+        document.getElementById('price').value = '';
+      } else {
+        alert(result.message);
+      }
+    })
+    .catch(error => {
+      alert('Error adding product');
+      console.error('Error:', error);
     });
 }
 
@@ -67,7 +76,11 @@ function deleteProduct(id) {
   formData.append('action', 'delete');
 
   fetch(apiUrl, { method: 'POST', body: formData })
-    .then(() => fetchProducts());
+    .then(response => response.json())
+    .then(result => {
+      alert(result.message);
+      fetchProducts();
+    });
 }
 
 function openEditModal(id, brand, model, price, status) {
@@ -91,7 +104,7 @@ function saveEdit() {
   const price = document.getElementById('editPrice').value;
   const status = document.getElementById('editStatus').value;
 
-  if (!brand || !model || !price || !status) {
+  if (!id || !brand || !model || !price || !status) {
     alert('All fields are required!');
     return;
   }
@@ -105,7 +118,9 @@ function saveEdit() {
   formData.append('action', 'edit');
 
   fetch(apiUrl, { method: 'POST', body: formData })
-    .then(() => {
+    .then(response => response.json())
+    .then(result => {
+      alert(result.message);
       closeModal();
       fetchProducts();
     });
