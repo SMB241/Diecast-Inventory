@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diecast Point of Sale</title>
+  <link rel="stylesheet" href="Main.css">
+</head>
+<body>
+
+  <h1>Diecast Point of Sale</h1>
+
+  <div class="container">
+
+    <label for="id">ID #:</label>
+    <input type="number" id="id" placeholder="Enter Product ID">
+
+    <button onclick="sellProduct()">Sell Product</button>
+
+    <div id="message"></div>
+
+    <h1>Sold Items</h1>
+
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Sold items will show up here -->
+      </tbody>
+    </table>
+
+    <div id="totalSales" style="margin-top: 20px; font-size: 20px;">
+      Total Sales: ₱0
+    </div>
+
+  </div>
+
+  <script src="sales.js"></script>
+
+</body>
+</html>
